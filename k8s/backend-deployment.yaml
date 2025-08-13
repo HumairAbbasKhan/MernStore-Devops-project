@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mernstore-backend
+  namespace: mernstore
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mernstore-backend
+  template:
+    metadata:
+      labels:
+        app: mernstore-backend
+    spec:
+      containers:
+      - name: backend
+        image: humairabbas923/mernstore-backend:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo-service:27017/mernstore"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: mernstore
+spec:
+  selector:
+    app: mernstore-backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: ClusterIP
