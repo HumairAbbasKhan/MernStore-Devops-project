@@ -18,6 +18,13 @@ spec:
           image: humairabbas923/mernstore-frontend:latest
           ports:
             - containerPort: 80
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
 ---
 apiVersion: v1
 kind: Service
