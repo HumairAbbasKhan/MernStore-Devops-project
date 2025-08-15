@@ -14,24 +14,12 @@ spec:
         app: mernstore-backend
     spec:
       containers:
-      - name: backend
-        image: humairabbas923/mernstore-backend:latest
-        ports:
-        - containerPort: 5000
-        env:
-        - name: MONGO_URI
-          value: "mongodb://mongo-service:27017/mernstore"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend-service
-  namespace: webapps
-spec:
-  selector:
-    app: mernstore-backend
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-  type: ClusterIP
+        - name: backend
+          image: humairabbas923/mernstore-backend:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGO_URI
+              value: "mongodb://mongo-service:27017/mernstore" # <-- important
+            - name: NODE_ENV
+              value: "production"
