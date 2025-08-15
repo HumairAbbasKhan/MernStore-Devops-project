@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mernstore-frontend
-  namespace: mernstore
+  namespace: webapps
 spec:
   replicas: 2
   selector:
@@ -20,7 +20,7 @@ spec:
             - containerPort: 80
 ---
 apiVersion: v1
-kind: Service
+kind: webapps
 metadata:
   name: frontend-service
   namespace: mernstore
